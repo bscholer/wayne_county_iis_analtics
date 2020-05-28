@@ -75,7 +75,7 @@ fs.readdir(dirPath, function (err, files) {
                 if (!line.match(SECOND_IP_REGEX)) continue;
                 if (line.match(SECOND_IP_REGEX).length < 2) continue;
                 let IPAddr = line.match(SECOND_IP_REGEX)[1];
-                let min = time.format("YYYY-MM-DD HH:mm");
+                let min = time.subtract(4, "hours").format("YYYY-MM-DD HH:mm");
 
                 // Add that minute to the list if it isn't in there already.
                 let minuteInList = false;
@@ -114,7 +114,7 @@ fs.readdir(dirPath, function (err, files) {
             let output = "";
             // Convert the array to a CSV.
             for (let minute of minutes) {
-                output += minute.minute + "," + minute.IPs.length + "\n";
+                output += minute.minute + ":00," + minute.IPs.length + "\n";
             }
             fs.writeFile(logFile + "_analytics.csv", outputCSV + output, function (err) {
                 if (err) {
