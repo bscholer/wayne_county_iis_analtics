@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require("path");
 var https = require('https');
-var moment = require('moment');
+var dayjs = require('dayjs');
 
 // Change these two lines at will.
 const LOG_FILE_PATH = "C:\\Users\\bscholer\\Downloads\\W3SVC1\\W3SVC1";
@@ -26,7 +26,7 @@ console.log(outputCSV);
 // });
 
 let ctr = 0;
-let startTime = moment();
+let startTime = dayjs();
 
 //Open the output file once instead of for each day
 // let fd;
@@ -70,7 +70,7 @@ fs.readdir(dirPath, function (err, files) {
                 if (line.match(/\/WebLink[\d]?.+/i)) relevantLines.push(line);
             }
             for (let line of relevantLines) {
-                let time = moment(line.match(DATE_REGEX)[0]);
+                let time = dayjs(line.match(DATE_REGEX)[0]);
                 // Make sure the line has the applicable IPs.
                 if (!line.match(SECOND_IP_REGEX)) continue;
                 if (line.match(SECOND_IP_REGEX).length < 2) continue;
@@ -122,7 +122,7 @@ fs.readdir(dirPath, function (err, files) {
                     return console.log("Couldn't write output file");
                 }
                 // console.log("Saved file");
-                console.log("Parsed " + ctr + " files in " + moment().diff(startTime, "milliseconds") + "ms");
+                console.log("Parsed " + ctr + " files in " + dayjs().diff(startTime, "milliseconds") + "ms");
             });
             // fs.appendFileSync(OUTPUT_FILE_NAME, output, function (err) {
             //     if (err) {
