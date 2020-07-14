@@ -3,9 +3,8 @@ var path = require("path");
 var https = require('https');
 var dayjs = require('dayjs');
 
-// Change these two lines at will.
+// Change this line to where you want to read log files from.
 const LOG_FILE_PATH = "C:\\Users\\bscholer\\Downloads\\W3SVC1\\W3SVC1";
-// const OUTPUT_FILE_PATH = "C:\\Users\\bscholer\\Desktop";
 
 // DON'T TOUCH THESE LINES UNLESS YOU KNOW WHAT YOU'RE DOING.
 //join directory
@@ -15,23 +14,9 @@ const SECOND_IP_REGEX = /[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}.*?([\d]{1,3}
 const OUTPUT_FILE_NAME = "analytics_report.csv";
 
 let outputCSV = "Datetime,Unique Users\n";
-console.log(outputCSV);
-
-// fs.writeFileSync(OUTPUT_FILE_NAME, outputCSV, function (err) {
-//     if (err) {
-//         console.log(err);
-//         return console.log("Couldn't write output file");
-//     }
-//     console.log("Saved base file");
-// });
 
 let ctr = 0;
 let startTime = dayjs();
-
-//Open the output file once instead of for each day
-// let fd;
-// try {
-//     fd = fs.openSync(OUTPUT_FILE_NAME, 'a');
 
 fs.readdir(dirPath, function (err, files) {
     if (err) {
@@ -121,22 +106,8 @@ fs.readdir(dirPath, function (err, files) {
                     console.log(err);
                     return console.log("Couldn't write output file");
                 }
-                // console.log("Saved file");
                 console.log("Parsed " + ctr + " files in " + dayjs().diff(startTime, "milliseconds") + "ms");
             });
-            // fs.appendFileSync(OUTPUT_FILE_NAME, output, function (err) {
-            //     if (err) {
-            //         console.log(err);
-            //         return console.log("Couldn't append to file.");
-            //     }
-            // });
         })
     }
 });
-// } catch (err) {
-//     console.log(err);
-// } finally {
-//     if (fd !== undefined) fs.closeSync(fd);
-//     console.log("Output CSV appended to: " + OUTPUT_FILE_NAME);
-// }
-
