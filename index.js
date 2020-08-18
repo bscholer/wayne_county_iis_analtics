@@ -13,7 +13,7 @@ const DATE_REGEX = /\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/;
 const SECOND_IP_REGEX = /[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}.*?([\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3})/;
 const OUTPUT_FILE_NAME = "analytics_report.csv";
 
-let outputCSV = "EST Datetime,UTC Datetime,Unique Users\n";
+let outputCSV = "UTC Datetime,EST Datetime,Unique Users\n";
 
 let ctr = 0;
 let startTime = dayjs();
@@ -99,7 +99,7 @@ fs.readdir(dirPath, function (err, files) {
             let output = "";
             // Convert the array to a CSV.
             for (let minute of minutes) {
-                output += dayjs(minute.minute).subtract(4, "hours").format("YYYY-MM-DD HH:mm") + ":00," + minute.minute + ":00," + minute.IPs.length + "\n";
+                output += minute.minute + ":00," + dayjs(minute.minute).subtract(4, "hours").format("YYYY-MM-DD HH:mm") + ":00," + minute.IPs.length + "\n";
             }
             fs.writeFile(logFile + "_analytics.csv", outputCSV + output, function (err) {
                 if (err) {
