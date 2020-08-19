@@ -16,7 +16,7 @@
 1. Open *Powershell*, and navigate to the directory you downloaded.
 2. Run `node .\index.js`, which will run the program.
 
-## To update:
+## Updating the program:
 1. Open *Git Bash*.
 2. Navigate inside of the downloaded directory, using `cd`.
 3. Run `git stash`, which locally saves and temporarily hides local changes to the code.
