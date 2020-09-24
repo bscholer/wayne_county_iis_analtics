@@ -13,7 +13,7 @@ const DATE_REGEX = /\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/;
 const SECOND_IP_REGEX = /[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}.*?([\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3})/;
 const OUTPUT_FILE_NAME = "analytics_report.csv";
 
-let outputCSV = "UTC Datetime,EST Datetime,Unique Users\n";
+let outputCSV = "UTCDatetime,ESTDatetime,UniqueUsers\n";
 
 let ctr = 0;
 let startTime = dayjs();
